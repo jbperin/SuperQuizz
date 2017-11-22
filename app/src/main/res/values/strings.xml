@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LeQuiz</string>
+    <string name="hello_world_label">Hello World!</string>
+    <string name="result_string">Bravo vous avez marqué %1$d points!</string>
+</resources>
