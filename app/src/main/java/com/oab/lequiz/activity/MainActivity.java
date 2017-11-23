@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.oab.lequiz.R;
 import com.oab.lequiz.model.Game;
+import com.oab.lequiz.model.Level;
 import com.oab.lequiz.model.Question;
 import com.oab.lequiz.util.Constants;
 import com.oab.lequiz.util.DataManager;
@@ -35,18 +36,40 @@ public class MainActivity extends AppCompatActivity implements Game.IGameListene
     Button btnNext;
     ProgressBar prgBar;
 
+    String level;
+    String pseudo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate");
+
+        Bundle extra = getIntent().getExtras();
+        if (extra!= null) {
+            level = extra.getString("level", "simple");
+            pseudo = extra.getString("pseudo", "foo");
+        }
+
+
         initViews();
         currentGame = Game.getInstance();
         //currentGame.initGame();
         //DataManager.getInstance().initDatabase(this);
-
-        currentGame.setQuestions (QuizzDataManager.getInstance().getExpertQuestion());
+        if (level.equalsIgnoreCase("simple")) {
+            currentGame.setDifficulty(Level.BEGINNER);
+            currentGame.setQuestions(QuizzDataManager.getInstance().getSimpleQuestion());
+        }
+        if (level.equalsIgnoreCase("normal")) {
+            currentGame.setDifficulty(Level.INTERMEDIATE);
+            currentGame.setQuestions(QuizzDataManager.getInstance().getNormalQuestion());
+        }
+        if (level.equalsIgnoreCase("expert")) {
+            currentGame.setDifficulty(Level.EXPERT);
+            currentGame.setQuestions(QuizzDataManager.getInstance().getExpertQuestion());
+        }
         //if(!currentGame.isRunning()) {
+        currentGame.setGamerPseudo(pseudo);
         currentGame.startQuizz(this);
         //}
     }

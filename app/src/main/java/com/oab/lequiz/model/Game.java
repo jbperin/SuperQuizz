@@ -54,6 +54,12 @@ public class Game {
 
     private IGameListener listener;
 
+    public String getGamerPseudo() {
+        return gamerPseudo;
+    }
+
+    private String gamerPseudo;
+
     public Integer getScore() {
         return score;
     }
@@ -128,11 +134,23 @@ public class Game {
         this.questions = questions.getQuestions();
     }
 
+    public void setGamerPseudo(String gamerPseudo) {
+        this.gamerPseudo = gamerPseudo;
+    }
+
     public interface IGameListener {
         public void onNewQuestion ();
         public void onQuestionEnded();
         public void onGameEnded();
         public void onTick(long dur);
+    }
+
+    public Level getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Level difficulty) {
+        this.difficulty = difficulty;
     }
 
     public boolean isRunning() {
