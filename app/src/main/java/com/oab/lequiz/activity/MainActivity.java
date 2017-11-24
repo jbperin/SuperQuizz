@@ -166,6 +166,10 @@ public class MainActivity extends AppCompatActivity implements Game.IGameListene
 
         Intent intent = new Intent (this, ScoreActivity.class);
         intent.putExtra("score", currentGame.getScore());
+        intent.putExtra("pseudo", currentGame.getGamerPseudo());
+        intent.putExtra("duration", currentGame.getDuration());
+
+
         startActivity(intent);
 
     }

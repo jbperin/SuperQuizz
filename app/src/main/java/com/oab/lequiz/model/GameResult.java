@@ -47,6 +47,18 @@ public class GameResult {
         return score;
     }
 
+    @Override
+    public String toString() {
+        return "GameResult{" +
+                "id=" + id +
+                ", pseudo='" + pseudo + '\'' +
+                ", score=" + score +
+                ", duration=" + duration +
+                ", level=" + level +
+                ", date=" + date +
+                '}';
+    }
+
     public void setScore(int score) {
         this.score = score;
     }

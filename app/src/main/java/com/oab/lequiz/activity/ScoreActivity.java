@@ -15,10 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.oab.lequiz.R;
+import com.oab.lequiz.database.DatabaseManager;
+import com.oab.lequiz.model.GameResult;
+import com.oab.lequiz.model.Level;
+
+import java.util.Date;
 
 public class ScoreActivity extends AppCompatActivity {
 
     int score=0;
+    String pseudo;
+    long duration;
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         AdapterView.AdapterContextMenuInfo AdapterContextMenuInfoinfo = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
@@ -60,10 +67,20 @@ public class ScoreActivity extends AppCompatActivity {
         Bundle extra = getIntent().getExtras();
         if (extra!= null) {
             score = extra.getInt("score", 0);
+            pseudo = extra.getString("pseudo", "toto");
+            duration = extra.getLong("duration", 0);
         }
         TextView tvScore = findViewById(R.id.scoreSentence);
         tvScore.setText(getString(R.string.result_string, score));
 
+        GameResult gr = new GameResult();
+        gr.setScore(score);
+        gr.setDuration(duration);
+        gr.setPseudo(pseudo);
+        gr.setDate(new Date());
+        gr.setLevel(Level.EXPERT);
+        // ???gr.setLevel();
+        DatabaseManager.getInstance(this).storeGameResult(gr);
         Button btnRestart = findViewById(R.id.btnRestart);
         btnRestart.setOnClickListener(new View.OnClickListener() {
             @Override

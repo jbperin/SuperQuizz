@@ -3,6 +3,7 @@ package com.oab.lequiz;
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
+import android.util.Log;
 
 import com.oab.lequiz.database.DatabaseManager;
 import com.oab.lequiz.model.GameResult;
@@ -23,6 +24,7 @@ import static org.junit.Assert.*;
  */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+
     @Test
     public void checkDatabase() throws Exception {
         // Context of the app under test.
@@ -45,6 +47,7 @@ public class ExampleInstrumentedTest {
             @Override
             public void onGameResultsRetreived(ArrayList<GameResult> results) {
                 for (GameResult res: results){
+                    Log.d("TEST ", res.toString());
                     assertTrue(games.contains(res));
                 }
             }

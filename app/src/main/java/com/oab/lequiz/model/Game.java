@@ -138,6 +138,10 @@ public class Game {
         this.gamerPseudo = gamerPseudo;
     }
 
+    public long getDuration() {
+        return duration;
+    }
+
     public interface IGameListener {
         public void onNewQuestion ();
         public void onQuestionEnded();

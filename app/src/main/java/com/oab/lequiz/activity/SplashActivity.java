@@ -1,4 +1,4 @@
-package com.oab.lequiz;
+package com.oab.lequiz.activity;
 
 import android.content.Intent;
 import android.os.Handler;
@@ -16,9 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 
-import com.oab.lequiz.activity.MainActivity;
-import com.oab.lequiz.activity.ScoreActivity;
-import com.oab.lequiz.util.DataManager;
+import com.oab.lequiz.R;
 import com.oab.lequiz.webservice.ILoadQuestionListener;
 import com.oab.lequiz.webservice.QuizzDataManager;
 
@@ -60,6 +58,7 @@ public class SplashActivity extends AppCompatActivity implements ILoadQuestionLi
         QuizzDataManager.getInstance().initDatabase(getApplicationContext(), this);
         final Button btnDemarrer = findViewById(R.id.btnDemarrer);
         btnDemarrer.setEnabled(false);
+        final Button btnVoirScore = findViewById(R.id.btnViewScore);
 
         LinearLayout llLog = findViewById(R.id.layoutLog);
         llLog.setVisibility(View.GONE);
@@ -104,7 +103,13 @@ public class SplashActivity extends AppCompatActivity implements ILoadQuestionLi
                 finish();
             }
         });
-
+        btnVoirScore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (getApplicationContext(), ViewScoreActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
