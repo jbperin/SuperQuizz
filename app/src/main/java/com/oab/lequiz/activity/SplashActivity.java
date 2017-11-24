@@ -1,9 +1,12 @@
 package com.oab.lequiz.activity;
 
+
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -17,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.RadioButton;
 
 import com.oab.lequiz.R;
+import com.oab.lequiz.fragment.ScoreFragment;
 import com.oab.lequiz.webservice.ILoadQuestionListener;
 import com.oab.lequiz.webservice.QuizzDataManager;
 
@@ -80,6 +84,11 @@ public class SplashActivity extends AppCompatActivity implements ILoadQuestionLi
 
             }
         });
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        ScoreFragment fragment = new ScoreFragment();
+        FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.layoutSplash, fragment);
+        fragmentTransaction.commit();
 
         btnDemarrer.setOnClickListener(new View.OnClickListener() {
 

@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.oab.lequiz.R;
+import com.oab.lequiz.fragment.PreferenceManager;
 import com.oab.lequiz.model.Game;
 import com.oab.lequiz.model.Level;
 import com.oab.lequiz.model.Question;
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements Game.IGameListene
     @Override
     public void onGameEnded() {
         Log.d(TAG, "onGameEnded");
-
+        PreferenceManager.updateHighScore(this, currentGame.getScore());
         Intent intent = new Intent (this, ScoreActivity.class);
         intent.putExtra("score", currentGame.getScore());
         intent.putExtra("pseudo", currentGame.getGamerPseudo());
